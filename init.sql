@@ -280,3 +280,141 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2019-07-30 18:18:40
+-- MySQL dump 10.13  Distrib 5.7.26, for osx10.14 (x86_64)
+--
+-- Host: 127.0.0.1    Database: db
+-- ------------------------------------------------------
+-- Server version	5.5.5-10.2.22-MariaDB-1:10.2.22+maria~bionic-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `pages`
+--
+
+DROP TABLE IF EXISTS `pages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pages` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(11) NOT NULL DEFAULT 0,
+  `tstamp` int(10) unsigned NOT NULL DEFAULT 0,
+  `crdate` int(10) unsigned NOT NULL DEFAULT 0,
+  `cruser_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `deleted` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `hidden` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `starttime` int(10) unsigned NOT NULL DEFAULT 0,
+  `endtime` int(10) unsigned NOT NULL DEFAULT 0,
+  `fe_group` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `sorting` int(11) NOT NULL DEFAULT 0,
+  `rowDescription` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `editlock` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `sys_language_uid` int(11) NOT NULL DEFAULT 0,
+  `l10n_parent` int(10) unsigned NOT NULL DEFAULT 0,
+  `l10n_source` int(10) unsigned NOT NULL DEFAULT 0,
+  `l10n_state` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `t3_origuid` int(10) unsigned NOT NULL DEFAULT 0,
+  `l10n_diffsource` mediumblob DEFAULT NULL,
+  `t3ver_oid` int(10) unsigned NOT NULL DEFAULT 0,
+  `t3ver_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `t3ver_label` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `t3ver_wsid` int(10) unsigned NOT NULL DEFAULT 0,
+  `t3ver_state` smallint(6) NOT NULL DEFAULT 0,
+  `t3ver_stage` int(11) NOT NULL DEFAULT 0,
+  `t3ver_count` int(10) unsigned NOT NULL DEFAULT 0,
+  `t3ver_tstamp` int(10) unsigned NOT NULL DEFAULT 0,
+  `t3ver_move_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `perms_userid` int(10) unsigned NOT NULL DEFAULT 0,
+  `perms_groupid` int(10) unsigned NOT NULL DEFAULT 0,
+  `perms_user` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `perms_group` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `perms_everybody` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `slug` varchar(2048) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `doktype` int(10) unsigned NOT NULL DEFAULT 0,
+  `TSconfig` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_siteroot` smallint(6) NOT NULL DEFAULT 0,
+  `php_tree_stop` smallint(6) NOT NULL DEFAULT 0,
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `shortcut` int(10) unsigned NOT NULL DEFAULT 0,
+  `shortcut_mode` int(10) unsigned NOT NULL DEFAULT 0,
+  `subtitle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `layout` int(10) unsigned NOT NULL DEFAULT 0,
+  `target` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `media` int(10) unsigned NOT NULL DEFAULT 0,
+  `lastUpdated` int(10) unsigned NOT NULL DEFAULT 0,
+  `keywords` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cache_timeout` int(10) unsigned NOT NULL DEFAULT 0,
+  `cache_tags` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `newUntil` int(10) unsigned NOT NULL DEFAULT 0,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `no_search` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `SYS_LASTCHANGED` int(10) unsigned NOT NULL DEFAULT 0,
+  `abstract` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `module` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `extendToSubpages` smallint(5) unsigned NOT NULL DEFAULT 0,
+  `author` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `author_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `nav_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `nav_hide` smallint(6) NOT NULL DEFAULT 0,
+  `content_from_pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `mount_pid` int(10) unsigned NOT NULL DEFAULT 0,
+  `mount_pid_ol` smallint(6) NOT NULL DEFAULT 0,
+  `alias` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `l18n_cfg` smallint(6) NOT NULL DEFAULT 0,
+  `fe_login_mode` smallint(6) NOT NULL DEFAULT 0,
+  `backend_layout` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `backend_layout_next_level` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `tsconfig_includes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `legacy_overlay_uid` int(10) unsigned NOT NULL DEFAULT 0,
+  `seo_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `no_index` smallint(6) NOT NULL DEFAULT 0,
+  `no_follow` smallint(6) NOT NULL DEFAULT 0,
+  `og_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `og_description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `og_image` int(10) unsigned NOT NULL DEFAULT 0,
+  `twitter_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `twitter_description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `twitter_image` int(10) unsigned NOT NULL DEFAULT 0,
+  `canonical_link` varchar(2048) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `categories` int(11) NOT NULL DEFAULT 0,
+  `nav_icon` int(10) unsigned DEFAULT 0,
+  `thumbnail` int(10) unsigned DEFAULT 0,
+  PRIMARY KEY (`uid`),
+  KEY `alias` (`alias`),
+  KEY `determineSiteRoot` (`is_siteroot`),
+  KEY `language_identifier` (`l10n_parent`,`sys_language_uid`),
+  KEY `parent` (`pid`,`deleted`,`hidden`),
+  KEY `t3ver_oid` (`t3ver_oid`,`t3ver_wsid`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pages`
+--
+
+LOCK TABLES `pages` WRITE;
+/*!40000 ALTER TABLE `pages` DISABLE KEYS */;
+INSERT INTO `pages` VALUES (1,0,1564505013,1564505013,1,0,0,0,0,'0',0,NULL,0,0,0,0,NULL,0,NULL,0,0,'',0,0,0,0,0,0,1,1,31,31,1,'Home','/',1,NULL,1,0,'',0,0,'',0,'',0,0,NULL,0,'',0,NULL,0,1564505013,NULL,'',0,'','','',0,0,0,0,'',0,0,'','',NULL,0,'',0,0,'',NULL,0,'',NULL,0,'',0,0,0),(2,1,1564505185,1564505153,1,0,0,0,0,'0',256,NULL,0,0,0,0,NULL,0,_binary 'a:1:{s:6:\"hidden\";N;}',0,0,'',0,0,0,0,0,0,1,1,31,31,0,'Blogs','/blogs',254,NULL,0,0,'',0,0,'',0,'',0,0,NULL,0,'',0,NULL,0,0,NULL,'',0,'','','',0,0,0,0,'',0,0,'','',NULL,0,'',0,0,'',NULL,0,'',NULL,0,'',0,0,0),(3,1,1564505184,1564505163,1,0,0,0,0,'0',128,NULL,0,0,0,0,NULL,0,_binary 'a:1:{s:6:\"hidden\";N;}',0,0,'',0,0,0,0,0,0,1,1,31,31,0,'List','/list',1,NULL,0,0,'',0,0,'',0,'',0,0,NULL,0,'',0,NULL,0,0,NULL,'',0,'','','',0,0,0,0,'',0,0,'','',NULL,0,'',0,0,'',NULL,0,'',NULL,0,'',0,0,0),(4,1,1564505183,1564505170,1,0,0,0,0,'0',64,NULL,0,0,0,0,NULL,0,_binary 'a:1:{s:6:\"hidden\";N;}',0,0,'',0,0,0,0,0,0,1,1,31,31,0,'Detail','/detail',1,NULL,0,0,'',0,0,'',0,'',0,0,NULL,0,'',0,NULL,0,0,NULL,'',0,'','','',0,0,0,0,'',0,0,'','',NULL,0,'',0,0,'',NULL,0,'',NULL,0,'',0,0,0);
+/*!40000 ALTER TABLE `pages` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-07-30 18:47:30
