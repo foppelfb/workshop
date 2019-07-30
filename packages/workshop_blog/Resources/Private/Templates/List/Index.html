@@ -1,0 +1,26 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+      f:schemaLocation="https://fluidtypo3.org/schemas/vhs-master.xsd"
+      xmlns="http://www.w3.org/1999/xhtml"
+      lang="en"
+      data-namespace-typo3-fluid="true">
+
+<f:widget.paginate objects="{blogs}" as="pagedBlogs" configuration="{itemsPerPage: 7}">
+    <f:for each="{pagedBlogs}" as="blog">
+        <div class="row">
+            <div class="col-12">
+                <h5><f:link.action controller="Detail" action="detail" arguments="{blog:blog}" pageUid="{settings.detailPage}">
+                    {blog.title} -
+                    <f:format.date date="{blog.date}" format="%d.%m.%Y"/>
+                </f:link.action>
+                </h5>
+            </div>
+            <div class="col-12">
+                <p>{blog.teaser}</p>
+            </div>
+            <div class="col-12">
+                <f:link.action controller="Detail" action="detail" arguments="{blog:blog}" pageUid="{settings.detailPage}" class="btn btn-primary">read more</f:link.action>
+            </div>
+        </div>
+    </f:for>
+</f:widget.paginate>
+</html>

@@ -1,0 +1,69 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+      f:schemaLocation="https://fluidtypo3.org/schemas/vhs-master.xsd"
+      xmlns="http://www.w3.org/1999/xhtml"
+      lang="en"
+      data-namespace-typo3-fluid="true">
+
+
+<div class="row">
+    <div class="col-12">
+        <h5><f:format.date date="{blog.date}" format="%d.%m.%Y"/></h5>
+    </div>
+    <div class="col-12">
+        <h1>{blog.title}</h1>
+    </div>
+
+    <div class="col-12">
+        <p>{blog.teaser}</p>
+    </div>
+
+    <div class="col-12">
+        <f:format.html>{blog.bodytext}</f:format.html>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <h5>Comments</h5>
+    </div>
+    <f:for each="{comments}" as="comment">
+        <div class="col-12">
+            <h6>(<f:format.date date="{comment.date}" format="%d.%m.%Y %H:%M"/>) {comment.commentor}</h6>
+        </div>
+        <div class="col-12">
+            <p><f:format.nl2br>{comment.comment}</f:format.nl2br></p>
+        </div>
+        <div class="col-12">
+            <hr/>
+        </div>
+    </f:for>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <h5>New comment</h5>
+    </div>
+    <div class="col-12">
+        <f:form action="savecomment" object="{newcomment}" name="comment" method="post">
+            <f:form.hidden property="blog" value="{blog}"/>
+
+
+            <div class="form-group">
+                <label>Your name <f:form.textfield property="commentor" class="form-control" required="1"/></label>
+            </div>
+            <div class="form-group">
+                <label>Your comment <f:form.textarea property="comment" class="form-control" required="1"/></label>
+            </div>
+            <div class="form-group">
+                <f:form.submit class="btn btn-primary" value="Save comment"/>
+            </div>
+        </f:form>
+    </div>
+</div>
+
+<style>
+    label {
+        width: 100%;
+    }
+</style>
+</html>

@@ -1,7 +1,8 @@
-vendor/
-var/
-public/
-!public/.gitignore
-private/
-.ddev/db_snapshots/
-.idea/
+/vendor/
+/var/
+/public/
+!/public/.gitignore
+/private/
+/.ddev/db_snapshots/
+/.idea/
+
