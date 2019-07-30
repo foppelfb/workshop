@@ -266,7 +266,7 @@ CREATE TABLE `tx_workshopblog_domain_model_comment` (
 
 LOCK TABLES `tx_workshopblog_domain_model_comment` WRITE;
 /*!40000 ALTER TABLE `tx_workshopblog_domain_model_comment` DISABLE KEYS */;
-INSERT INTO `tx_workshopblog_domain_model_comment` VALUES (1,2,1564502829,1564502829,0,0,0,'test 123','test comment now',1564502830,1),(2,2,1564502891,1564502891,0,0,0,'Test Comment 2','test comment',1564502892,1),(3,2,1564503062,1564503062,0,0,0,'Another Comment','this should be no problem',1564503064,1),(4,2,1564503062,1564503062,0,0,0,'Another Comment','this should be no problem',1564503064,1);
+INSERT INTO `tx_workshopblog_domain_model_comment` VALUES (1,2,1564502829,1564502829,0,0,0,'test 123','test comment now',1564502830,1),(2,2,1564502891,1564502891,0,0,0,'Test Comment 2','test comment',1564502892,1),(3,2,1564503062,1564503062,0,0,0,'Another Comment','this should be no problem',1564503064,1);
 /*!40000 ALTER TABLE `tx_workshopblog_domain_model_comment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
