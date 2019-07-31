@@ -4,7 +4,7 @@
       lang="en"
       data-namespace-typo3-fluid="true">
 
-<f:widget.paginate objects="{blogs}" as="pagedBlogs" configuration="{itemsPerPage: 7}">
+<f:widget.paginate objects="{blogs}" as="pagedBlogs" configuration="{itemsPerPage: 2}">
     <f:for each="{pagedBlogs}" as="blog">
         <div class="row">
             <div class="col-12">
@@ -23,4 +23,24 @@
         </div>
     </f:for>
 </f:widget.paginate>
+
+<style>
+    .f3-widget-paginator {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+    .f3-widget-paginator li {
+        list-style-type: none;
+        display: inline-block;
+        border: 1px solid #000;
+        margin: 0 10px;
+    }
+    .f3-widget-paginator li.current , .f3-widget-paginator li a {
+        display: block;
+
+        padding: 10px;
+
+    }
+</style>
 </html>

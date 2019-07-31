@@ -8,6 +8,13 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 class Comment extends AbstractEntity
 {
+    
+    /**
+     * @var int
+     */
+    protected $tstamp;
+    
+    
     /**
      * @var string
      */
@@ -91,6 +98,20 @@ class Comment extends AbstractEntity
         $this->date = $date;
     }
     
+    /**
+     * @return int
+     */
+    public function getTstamp(): int
+    {
+        return $this->tstamp;
+    }
     
+    /**
+     * @param int $tstamp
+     */
+    public function setTstamp(int $tstamp): void
+    {
+        $this->tstamp = $tstamp;
+    }
     
 }

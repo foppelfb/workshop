@@ -28,6 +28,11 @@ return [
         ]
     ],
     'columns' => [
+        'tstamp' => [
+            'config' => [
+                'type' => 'passthrough',
+            ],
+        ],
         'hidden' => [
             'exclude' => true,
             'label' => 'Visible',

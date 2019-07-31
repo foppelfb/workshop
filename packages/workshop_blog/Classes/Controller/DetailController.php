@@ -47,12 +47,12 @@ class DetailController extends ActionController
         ]);
     }
     
-
     
     /**
      * @param Comment $comment
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      */
     public function savecommentAction(Comment $comment)
     {
@@ -64,25 +64,6 @@ class DetailController extends ActionController
         $this->redirect('detail',null,null,['blog'=>$comment->getBlog()]);
        
         
-    }
-    
-    /**
-     * @param $argument
-     * @param $property
-     * @param $format
-     */
-    protected function setTypeConvertConfigurationForDate($argument, $property, $format)
-    {
-        /** @var \TYPO3\CMS\Extbase\Mvc\Controller\MvcPropertyMappingConfiguration $mappingConf */
-        $mappingConf = $this->arguments[$argument]->getPropertyMappingConfiguration();
-        //$mappingConf->allowAllProperties();
-        $mappingConf
-            ->forProperty($property)
-            ->setTypeConverterOption(
-                \TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::class,
-                \TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT,
-                $format
-            );
     }
     
 }

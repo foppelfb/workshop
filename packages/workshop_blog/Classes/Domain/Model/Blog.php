@@ -10,6 +10,11 @@ class Blog extends AbstractEntity
 {
     
     /**
+     * @var int
+     */
+    protected $tstamp;
+    
+    /**
      * @var string
      */
     protected $title;
@@ -93,4 +98,22 @@ class Blog extends AbstractEntity
     {
         $this->bodytext = $bodytext;
     }
+    
+    /**
+     * @return int
+     */
+    public function getTstamp(): int
+    {
+        return $this->tstamp;
+    }
+    
+    /**
+     * @param int $tstamp
+     */
+    public function setTstamp(int $tstamp): void
+    {
+        $this->tstamp = $tstamp;
+    }
+    
+    
 }
