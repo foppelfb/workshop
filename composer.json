@@ -60,6 +60,7 @@
     ],
     "addtrustedhostpattern": "@php vendor/bin/typo3cms configuration:set SYS/trustedHostsPattern '.*'",
     "importdata": "@php vendor/bin/typo3cms database:import < init.sql",
-    "killcache": "@php vendor/bin/typo3cms cache:flush"
+    "killcache": "@php vendor/bin/typo3cms cache:flush",
+    "t3update": "@php vendor/bin/typo3cms install:extensionsetupifpossible"
   }
 }

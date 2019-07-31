@@ -30,7 +30,7 @@ return [
     'columns' => [
         'hidden' => [
             'exclude' => true,
-            'label' => 'Hidden',
+            'label' => 'Visible',
             'config' => [
                 'type' => 'check',
                 'renderType' => 'checkboxToggle',
