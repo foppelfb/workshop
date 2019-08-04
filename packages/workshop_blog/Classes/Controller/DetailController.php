@@ -49,6 +49,7 @@ class DetailController extends ActionController
     
     /**
      * @param Comment $comment
+     * @throws \TYPO3\CMS\Core\Cache\Exception\NoSuchCacheException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
@@ -58,8 +59,12 @@ class DetailController extends ActionController
         $comment->setDate(new \DateTime());
         $comment->setComment(\strip_tags($comment->getComment()));
         $comment->setCommentor(\strip_tags($comment->getCommentor()));
-      
+    
+    
         $this->commentRepository->add($comment);
+    
+        $cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Cache\CacheManager::class)->getCache('workshop_blog_cache');
+        $cache->flushByTag('blogId_'.$comment->getBlog()->getUid());
         $this->redirect('detail', null, null, ['blog'=>$comment->getBlog()]);
     }
 }
