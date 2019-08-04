@@ -11,7 +11,7 @@ if (!defined('TYPO3_MODE')) {
         'List' => 'index',
     ],
     [
-        'List' => 'index',
+    //    'List' => 'index',
     ],
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_PLUGIN
 );
@@ -22,7 +22,7 @@ if (!defined('TYPO3_MODE')) {
         'Latest'=>'index',
     ],
     [
-        'Latest'=>'index',
+      //  'Latest'=>'index',
     ],
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_PLUGIN
 );
@@ -35,19 +35,8 @@ if (!defined('TYPO3_MODE')) {
     ],
     [
 
-        'Detail'=>'detail,savecomment'
+       // 'Detail'=>'detail,savecomment'
     ],
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_PLUGIN
 );
 
-if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['workshop_blog_cache'])) {
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['workshop_blog_cache'] = [
-        'backend'=>\TYPO3\CMS\Core\Cache\Backend\Typo3DatabaseBackend::class,
-        // 'backend'=>\TYPO3\CMS\Core\Cache\Backend\NullBackend::class, //to disable caching
-        'frontend'=>\TYPO3\CMS\Core\Cache\Frontend\VariableFrontend::class,
-        'groups'=>['all'],
-        'options'=>[
-            'defaultLifetime'=>0,
-        ]
-    ];
-}
