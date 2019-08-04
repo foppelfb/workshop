@@ -3,7 +3,6 @@
 
 namespace WORKSHOP\WorkshopBlog\Controller;
 
-
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use WORKSHOP\WorkshopBlog\Domain\Repository\BlogRepository;
 use WORKSHOP\WorkshopBlog\Domain\Repository\CommentRepository;
@@ -35,11 +34,8 @@ class LatestController extends ActionController
     
     public function indexAction()
     {
-    
         $this->view->assignMultiple([
             'blogs'=>$this->blogRepository->findAll()->getQuery()->setLimit(3)->execute(),
         ]);
-        
     }
-    
 }

@@ -3,7 +3,6 @@
 
 namespace WORKSHOP\WorkshopBlog\Domain\Model;
 
-
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 class Comment extends AbstractEntity
@@ -94,7 +93,6 @@ class Comment extends AbstractEntity
 
     public function setDate(\DateTime $date): void
     {
-    
         $this->date = $date;
     }
     
@@ -113,5 +111,4 @@ class Comment extends AbstractEntity
     {
         $this->tstamp = $tstamp;
     }
-    
 }

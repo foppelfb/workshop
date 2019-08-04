@@ -3,7 +3,6 @@
 
 namespace WORKSHOP\WorkshopBlog\Controller;
 
-
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use WORKSHOP\WorkshopBlog\Domain\Model\Blog;
 use WORKSHOP\WorkshopBlog\Domain\Model\Comment;
@@ -61,9 +60,6 @@ class DetailController extends ActionController
         $comment->setCommentor(\strip_tags($comment->getCommentor()));
       
         $this->commentRepository->add($comment);
-        $this->redirect('detail',null,null,['blog'=>$comment->getBlog()]);
-       
-        
+        $this->redirect('detail', null, null, ['blog'=>$comment->getBlog()]);
     }
-    
 }
