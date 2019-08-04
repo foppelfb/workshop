@@ -43,6 +43,6 @@ config.tx_extbase {
 	}
 }
 
-tt_content.list.20.workshopblog_list = USER_INT
-tt_content.list.20.workshopblog_latest = USER_INT
-tt_content.list.20.workshopblog_detail = USER_INT
+//tt_content.list.20.workshopblog_list = USER_INT
+//tt_content.list.20.workshopblog_latest = USER_INT
+//tt_content.list.20.workshopblog_detail = USER_INT
