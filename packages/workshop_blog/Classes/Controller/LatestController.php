@@ -4,6 +4,8 @@
 namespace WORKSHOP\WorkshopBlog\Controller;
 
 use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use WORKSHOP\WorkshopBlog\Domain\Repository\BlogRepository;
 use WORKSHOP\WorkshopBlog\Domain\Repository\CommentRepository;
@@ -35,13 +37,11 @@ class LatestController extends ActionController
     
     public function indexAction(): ResponseInterface
     {
-        $this->view->assignMultiple([
-            'blogs'=>$this->blogRepository->findAll()->getQuery()->setLimit(3)->execute(),
-        ]);
-        return $this->htmlResponse();
+
         $pidOfPlugin = $this->configurationManager->getContentObject()->data['pid'];
         $uidOfPlugin = $this->configurationManager->getContentObject()->data['uid'];
-        $cacheKey = 'blog-latest-'.$pidOfPlugin.'-'.$uidOfPlugin;
+	    $languageid = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id');
+        $cacheKey = 'blog-latest-'.$pidOfPlugin.'-'.$uidOfPlugin.'-'.$languageid;
 
         $cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Cache\CacheManager::class)
             ->getCache('workshop_blog_cache');
@@ -58,6 +58,6 @@ class LatestController extends ActionController
             $cache->set($cacheKey,$data,$tags,0);
         }
 
-        return $data;
+	    return $this->htmlResponse($data);
     }
 }
