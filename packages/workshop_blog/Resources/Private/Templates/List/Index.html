@@ -4,26 +4,35 @@
       lang="en"
       data-namespace-typo3-fluid="true">
 
-<f:widget.paginate objects="{blogs}" as="pagedBlogs" configuration="{itemsPerPage: 2}">
-    <f:for each="{pagedBlogs}" as="blog">
-        <div class="row">
-            <div class="col-12">
-                <h5><f:link.action controller="Detail" action="detail" arguments="{blog:blog}" pageUid="{settings.detailPage}">
-                    {blog.title} -
-                    <f:format.date date="{blog.date}" format="%d.%m.%Y"/>
-                </f:link.action>
-                </h5>
-            </div>
-            <div class="col-12">
-                <p>{blog.teaser}</p>
-            </div>
-            <div class="col-12" style="margin-bottom:2em;">
-                <f:link.action controller="Detail" action="detail" arguments="{blog:blog}" pageUid="{settings.detailPage}" class="btn btn-primary">read more</f:link.action>
-            </div>
+<f:for each="{blogs}" as="blog">
+    <div class="row">
+        <div class="col-12">
+            <h5><f:link.action controller="Detail" action="detail" arguments="{blog:blog}" pageUid="{settings.detailPage}">
+                {blog.title} -
+                <f:format.date date="{blog.date}" format="%d.%m.%Y"/>
+            </f:link.action>
+            </h5>
         </div>
+        <div class="col-12">
+            <p>{blog.teaser}</p>
+        </div>
+        <div class="col-12" style="margin-bottom:2em;">
+            <f:link.action controller="Detail" action="detail" arguments="{blog:blog}" pageUid="{settings.detailPage}" class="btn btn-primary">read more</f:link.action>
+        </div>
+        <div class="divider col-12"></div>
+    </div>
+</f:for>
+<ul class="f3-widget-paginator">
+    <f:if condition="{pagination.previousPageNumber}">
+    <li><f:link.action arguments="{page:pagination.previousPageNumber}">&laquo;</f:link.action></li>
+    </f:if>
+    <f:for each="{pagination.allPageNumbers}" as="pn">
+        <li><f:link.action arguments="{page:pn}">{pn}</f:link.action></li>
     </f:for>
-</f:widget.paginate>
-
+    <f:if condition="{pagination.nextPageNumber}">
+    <li><f:link.action arguments="{page:pagination.nextPageNumber}">&raquo;</f:link.action></li>
+    </f:if>
+</ul>
 <style>
     .f3-widget-paginator {
         display: flex;

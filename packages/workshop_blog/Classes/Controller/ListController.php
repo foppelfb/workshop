@@ -6,7 +6,9 @@ namespace WORKSHOP\WorkshopBlog\Controller;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use WORKSHOP\WorkshopBlog\Domain\Repository\BlogRepository;
 use WORKSHOP\WorkshopBlog\Domain\Repository\CommentRepository;
 
@@ -57,8 +59,14 @@ class ListController extends ActionController
 
         if (($data = $cache->get($cacheKey)) === false) {
 
-            $this->view->assignMultiple([
-                'blogs'=>$this->blogRepository->findAll(),
+            $blogs = $this->blogRepository->findAll();
+		$page = $this->request->hasArgument('page') ? $this->request->getArgument('page') : 1;
+	    $paginator = new QueryResultPaginator( $blogs, $page, 3);
+	    $pagination = new SimplePagination($paginator);
+
+	    $this->view->assignMultiple([
+                'blogs'=>$paginator->getPaginatedItems(),
+	        'pagination'=> $pagination
             ]);
 
             $data = $this->view->render();
@@ -68,7 +76,6 @@ class ListController extends ActionController
         }
 
 	    return $this->htmlResponse($data);
-
 
     }
 }
