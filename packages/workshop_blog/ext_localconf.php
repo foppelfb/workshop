@@ -16,31 +16,29 @@ ExtensionUtility::configurePlugin(
         ListController::class => 'index',
     ],
     [
-        'List' => 'index',
+	    ListController::class => 'index',
     ],
-    ExtensionUtility::PLUGIN_TYPE_PLUGIN
+	ExtensionUtility::PLUGIN_TYPE_PLUGIN
 );
 ExtensionUtility::configurePlugin(
     'WorkshopBlog',
     'Latest',
     [
-        LatestController::class=>'index',
+	    LatestController::class=>'index',
     ],
     [
-        'Latest'=>'index',
+        LatestController::class =>'index',
     ],
-    ExtensionUtility::PLUGIN_TYPE_PLUGIN
+	ExtensionUtility::PLUGIN_TYPE_PLUGIN
 );
 ExtensionUtility::configurePlugin(
     'WorkshopBlog',
     'Detail',
     [
-
-        DetailController::class=>'detail,savecomment'
+	    DetailController::class=>'detail,savecomment'
     ],
     [
-
-        'Detail'=>'detail,savecomment'
+	    DetailController::class=>'detail,savecomment'
     ],
     ExtensionUtility::PLUGIN_TYPE_PLUGIN
 );
