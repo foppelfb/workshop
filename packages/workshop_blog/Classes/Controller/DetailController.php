@@ -5,6 +5,9 @@ namespace WORKSHOP\WorkshopBlog\Controller;
 
 use DateTime;
 use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Cache\CacheManager;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
 use TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException;
 use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
@@ -42,21 +45,15 @@ class DetailController extends ActionController
     
     public function detailAction(Blog $blog): ResponseInterface
     {
-        $newcomment = new Comment();
-        
-        $this->view->assignMultiple([
-           'blog'=>$blog,
-           'comments'=>$this->commentRepository->findByBlog($blog),
-           'newcomment'=>$newcomment,
-        ]);
-        return $this->htmlResponse();
         $pidOfPlugin = $this->configurationManager->getContentObject()->data['pid'];
         $uidOfPlugin = $this->configurationManager->getContentObject()->data['uid'];
 
-        $cacheKey = 'blog-detail-'.$blog->getUid().'-'.$pidOfPlugin.'-'.$uidOfPlugin;
+	    $languageid = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id');
 
-        $cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Cache\CacheManager::class)
-            ->getCache('workshop_blog_cache');
+        $cacheKey = 'blog-detail-'.$blog->getUid().'-'.$pidOfPlugin.'-'.$uidOfPlugin.'-'.$languageid;
+
+        $cache = GeneralUtility::makeInstance( CacheManager::class)
+                               ->getCache('workshop_blog_cache');
 
         if (($data = $cache->get($cacheKey)) === false) {
             $newcomment = new Comment();
@@ -77,7 +74,8 @@ class DetailController extends ActionController
 
             $cache->set($cacheKey, $data, $tags, 0);
         }
-        return $data;
+
+	    return $this->htmlResponse($data);
     }
     
     

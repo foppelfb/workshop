@@ -3,12 +3,18 @@
 
 //above
 
+use TYPO3\CMS\Core\Cache\CacheManager;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 $pidOfPlugin = $this->configurationManager->getContentObject()->data['pid'];
 $uidOfPlugin = $this->configurationManager->getContentObject()->data['uid'];
 
-$cacheKey = 'blog-detail-'.$blog->getUid().'-'.$pidOfPlugin.'-'.$uidOfPlugin;
+$languageid = GeneralUtility::makeInstance( Context::class)->getPropertyFromAspect('language', 'id');
 
-$cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Cache\CacheManager::class)
+$cacheKey = 'blog-detail-'.$blog->getUid().'-'.$pidOfPlugin.'-'.$uidOfPlugin.'-'.$languageid;
+
+$cache = GeneralUtility::makeInstance( CacheManager::class)
     ->getCache('workshop_blog_cache');
 
 if (($data = $cache->get($cacheKey)) === false) {
@@ -27,4 +33,4 @@ if (($data = $cache->get($cacheKey)) === false) {
     $cache->set($cacheKey,$data,$tags,0);
 }
 
-return $data;
+return $this->htmlResponse($data);
