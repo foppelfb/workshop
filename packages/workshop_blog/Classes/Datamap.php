@@ -22,7 +22,7 @@ class Datamap
         $this->cacheManager = GeneralUtility::makeInstance(CacheManager::class)->getCache('workshop_blog_cache');
     }
     
-    public function processCmdmap($command, $table, $id, $value, $commandIsProcessed, DataHandler $pObj, $pasteUpdate)
+    public function processCmdmap($command, $table, $id, $value, $commandIsProcessed, DataHandler $pObj, $pasteUpdate):void
     {
         if ( $command === 'delete' || $command === 'move') {
             $this->clearMyCache($table,$id,$command);
@@ -30,7 +30,7 @@ class Datamap
         
     }
     
-    public function processDatamap_afterDatabaseOperations($status, $table, $id, &$fieldArray, DataHandler $pObj)
+    public function processDatamap_afterDatabaseOperations($status, $table, $id, &$fieldArray, DataHandler $pObj):void
     {
         $this->clearMyCache($table,$id,$status);
     }
