@@ -1,46 +1,41 @@
 <?php
 
-use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
-use WORKSHOP\WorkshopBlog\Controller\DetailController;
-use WORKSHOP\WorkshopBlog\Controller\LatestController;
-use WORKSHOP\WorkshopBlog\Controller\ListController;
-
 if (!defined('TYPO3')) {
-    die();
+	die();
 }
 
-ExtensionUtility::configurePlugin(
-    'WorkshopBlog',
-    'List',
-    [
-        ListController::class => 'index',
-    ],
-    [
-	    ListController::class => 'index',
-    ],
-	ExtensionUtility::PLUGIN_TYPE_PLUGIN
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+	'WorkshopBlog',
+	'List',
+	[
+		\WORKSHOP\WorkshopBlog\Controller\ListController::class => 'index',
+	],
+	[
+		\WORKSHOP\WorkshopBlog\Controller\ListController::class => 'index',
+	],
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_PLUGIN
 );
-ExtensionUtility::configurePlugin(
-    'WorkshopBlog',
-    'Latest',
-    [
-	    LatestController::class=>'index',
-    ],
-    [
-        LatestController::class =>'index',
-    ],
-	ExtensionUtility::PLUGIN_TYPE_PLUGIN
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+	'WorkshopBlog',
+	'Latest',
+	[
+		\WORKSHOP\WorkshopBlog\Controller\LatestController::class=>'index',
+	],
+	[
+		\WORKSHOP\WorkshopBlog\Controller\LatestController::class =>'index',
+	],
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_PLUGIN
 );
-ExtensionUtility::configurePlugin(
-    'WorkshopBlog',
-    'Detail',
-    [
-	    DetailController::class=>'detail,savecomment'
-    ],
-    [
-	    DetailController::class=>'detail,savecomment'
-    ],
-    ExtensionUtility::PLUGIN_TYPE_PLUGIN
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+	'WorkshopBlog',
+	'Detail',
+	[
+		\WORKSHOP\WorkshopBlog\Controller\DetailController::class=>'detail,savecomment'
+	],
+	[
+		\WORKSHOP\WorkshopBlog\Controller\DetailController::class=>'detail,savecomment'
+	],
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_PLUGIN
 );
 
 if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['workshop_blog_cache'])) {
