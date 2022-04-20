@@ -3,6 +3,7 @@
 
 namespace WORKSHOP\WorkshopBlog\Controller;
 
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use WORKSHOP\WorkshopBlog\Domain\Repository\BlogRepository;
 use WORKSHOP\WorkshopBlog\Domain\Repository\CommentRepository;
@@ -22,20 +23,21 @@ class ListController extends ActionController
      */
     protected $commentRepository;
     
-    public function injectBlogRepository(BlogRepository $blogRepository)
+    public function injectBlogRepository(BlogRepository $blogRepository): void
     {
         $this->blogRepository = $blogRepository;
     }
     
-    public function injectCommentRepository(CommentRepository $commentRepository)
+    public function injectCommentRepository(CommentRepository $commentRepository): void
     {
         $this->commentRepository = $commentRepository;
     }
     
-    public function indexAction()
+    public function indexAction(): ResponseInterface
     {
         $this->view->assignMultiple([
             'blogs'=>$this->blogRepository->findAll(),
         ]);
+        return $this->htmlResponse();
     }
 }

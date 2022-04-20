@@ -1,6 +1,7 @@
 {
   "name": "workshop/blog",
   "description": "Workshop Blog",
+  "license": "GPL-2.0-or-later",
   "version": "1.0.0",
   "type": "typo3-cms-extension",
   "authors": [
