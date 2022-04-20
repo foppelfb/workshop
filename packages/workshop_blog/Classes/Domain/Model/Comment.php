@@ -3,41 +3,27 @@
 
 namespace WORKSHOP\WorkshopBlog\Domain\Model;
 
+use DateTime;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use function strip_tags;
 
 class Comment extends AbstractEntity
 {
     
-    /**
-     * @var int
-     */
-    protected $tstamp;
+    protected int $tstamp = 0;
+
+    protected string $commentor = '';
     
-    
-    /**
-     * @var string
-     */
-    protected $commentor;
+    protected string $comment = '';
     
     /**
-     * @var string
-     */
-    protected $comment;
-    
-    /**
-     * @var \DateTime
+     * @var DateTime
      */
     protected $date;
     
-    /**
-     * @var \WORKSHOP\WorkshopBlog\Domain\Model\Blog
-     */
-    protected $blog;
+    protected Blog $blog;
     
-    /**
-     * @return string
-     */
-    public function getCommentor(): ?string
+    public function getCommentor(): string
     {
         return $this->commentor;
     }
@@ -47,13 +33,10 @@ class Comment extends AbstractEntity
      */
     public function setCommentor(string $commentor): void
     {
-        $this->commentor = $commentor;
+        $this->commentor = strip_tags( $commentor);
     }
     
-    /**
-     * @return string
-     */
-    public function getComment(): ?string
+    public function getComment(): string
     {
         return $this->comment;
     }
@@ -63,13 +46,10 @@ class Comment extends AbstractEntity
      */
     public function setComment(string $comment): void
     {
-        $this->comment = $comment;
+        $this->comment = strip_tags( $comment);
     }
     
-    /**
-     * @return Blog
-     */
-    public function getBlog(): ?Blog
+    public function getBlog(): Blog
     {
         return $this->blog;
     }
@@ -83,15 +63,18 @@ class Comment extends AbstractEntity
     }
     
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getDate(): ?\DateTime
+    public function getDate(): DateTime
     {
         return $this->date;
     }
     
 
-    public function setDate(\DateTime $date): void
+    /**
+     * @param DateTime $date
+     */
+    public function setDate( DateTime $date): void
     {
         $this->date = $date;
     }

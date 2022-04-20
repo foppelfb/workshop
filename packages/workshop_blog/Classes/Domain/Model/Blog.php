@@ -3,39 +3,27 @@
 
 namespace WORKSHOP\WorkshopBlog\Domain\Model;
 
+use DateTime;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 class Blog extends AbstractEntity
 {
     
-    /**
-     * @var int
-     */
-    protected $tstamp;
+    protected int $tstamp = 0;
+    
+    protected string $title = '';
     
     /**
-     * @var string
-     */
-    protected $title;
-    
-    /**
-     * @var \DateTime
+     * @var DateTime
      */
     protected $date;
     
-    /**
-     * @var string
-     */
-    protected $teaser;
+    protected string $teaser = '';
     
+    protected string $bodytext = '';
+
     /**
-     * @var string
-     */
-    protected $bodytext;
-    
-    
-    /**
-     * @return string|null
+     * @return ?string
      */
     public function getTitle(): ?string
     {
@@ -51,25 +39,25 @@ class Blog extends AbstractEntity
     }
     
     /**
-     * @return \DateTime|null
+     * @return DateTime
      */
-    public function getDate(): ?\DateTime
+    public function getDate(): DateTime
     {
         return $this->date;
     }
     
     /**
-     * @param \DateTime $date
+     * @param DateTime $date
      */
-    public function setDate(\DateTime $date): void
+    public function setDate( DateTime $date): void
     {
         $this->date = $date;
     }
     
     /**
-     * @return string|null
+     * @return string
      */
-    public function getTeaser(): ?string
+    public function getTeaser(): string
     {
         return $this->teaser;
     }
@@ -83,9 +71,9 @@ class Blog extends AbstractEntity
     }
     
     /**
-     * @return string|null
+     * @return string
      */
-    public function getBodytext(): ?string
+    public function getBodytext(): string
     {
         return $this->bodytext;
     }

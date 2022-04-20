@@ -1,41 +1,46 @@
 <?php
 
-if (!defined('TYPO3_MODE')) {
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
+use WORKSHOP\WorkshopBlog\Controller\DetailController;
+use WORKSHOP\WorkshopBlog\Controller\LatestController;
+use WORKSHOP\WorkshopBlog\Controller\ListController;
+
+if (!defined('TYPO3')) {
     die();
 }
 
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'WORKSHOP.WorkshopBlog',
+ExtensionUtility::configurePlugin(
+    'WorkshopBlog',
     'List',
     [
-        'List' => 'index',
+        ListController::class => 'index',
     ],
     [
         'List' => 'index',
     ],
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_PLUGIN
+    ExtensionUtility::PLUGIN_TYPE_PLUGIN
 );
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'WORKSHOP.WorkshopBlog',
+ExtensionUtility::configurePlugin(
+    'WorkshopBlog',
     'Latest',
     [
-        'Latest'=>'index',
+        LatestController::class=>'index',
     ],
     [
         'Latest'=>'index',
     ],
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_PLUGIN
+    ExtensionUtility::PLUGIN_TYPE_PLUGIN
 );
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'WORKSHOP.WorkshopBlog',
+ExtensionUtility::configurePlugin(
+    'WorkshopBlog',
     'Detail',
     [
 
-        'Detail'=>'detail,savecomment'
+        DetailController::class=>'detail,savecomment'
     ],
     [
 
         'Detail'=>'detail,savecomment'
     ],
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_PLUGIN
+    ExtensionUtility::PLUGIN_TYPE_PLUGIN
 );
