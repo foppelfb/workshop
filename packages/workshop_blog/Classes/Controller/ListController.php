@@ -6,7 +6,9 @@ namespace WORKSHOP\WorkshopBlog\Controller;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use WORKSHOP\WorkshopBlog\Domain\Repository\BlogRepository;
 use WORKSHOP\WorkshopBlog\Domain\Repository\CommentRepository;
 
@@ -42,23 +44,23 @@ class ListController extends ActionController
         $uidOfPlugin = $this->configurationManager->getContentObject()->data['uid'];
 	    $languageid = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id');
 
-        $currentPage = 1;
-        if ($this->request->hasArgument('@widget_0')) {
-            $paginateWidget = $this->request->getArgument('@widget_0');
-            if (isset($paginateWidget['currentPage'])) {
-                $currentPage = $paginateWidget['currentPage'];
-            }
-        }
+	    $page = $this->request->hasArgument('page') ? $this->request->getArgument('page') : 1;
 
-        $cacheKey = 'blog-list-'.$pidOfPlugin.'-'.$uidOfPlugin.'-'.$currentPage.'-'.$languageid;
+        $cacheKey = 'blog-list-'.$pidOfPlugin.'-'.$uidOfPlugin.'-'.$page.'-'.$languageid;
 
         $cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Cache\CacheManager::class)
             ->getCache('workshop_blog_cache');
 
         if (($data = $cache->get($cacheKey)) === false) {
 
-            $this->view->assignMultiple([
-                'blogs'=>$this->blogRepository->findAll(),
+            $blogs = $this->blogRepository->findAll();
+
+		    $paginator = new QueryResultPaginator( $blogs, $page, 3);
+		    $pagination = new SimplePagination($paginator);
+
+			$this->view->assignMultiple([
+                'blogs'=>$paginator->getPaginatedItems(),
+	            'pagination'=> $pagination
             ]);
 
             $data = $this->view->render();
@@ -68,7 +70,6 @@ class ListController extends ActionController
         }
 
 	    return $this->htmlResponse($data);
-
 
     }
 }
