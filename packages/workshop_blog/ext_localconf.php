@@ -15,9 +15,7 @@ ExtensionUtility::configurePlugin(
     [
         ListController::class => 'index',
     ],
-    [
-    //    'List' => 'index',
-    ],
+    [],
     ExtensionUtility::PLUGIN_TYPE_PLUGIN
 );
 ExtensionUtility::configurePlugin(
@@ -26,9 +24,7 @@ ExtensionUtility::configurePlugin(
     [
         LatestController::class=>'index',
     ],
-    [
-      //  'Latest'=>'index',
-    ],
+    [],
     ExtensionUtility::PLUGIN_TYPE_PLUGIN
 );
 ExtensionUtility::configurePlugin(
@@ -38,9 +34,6 @@ ExtensionUtility::configurePlugin(
 
         DetailController::class=>'detail,savecomment'
     ],
-    [
-
-       // 'Detail'=>'detail,savecomment'
-    ],
+    [],
     ExtensionUtility::PLUGIN_TYPE_PLUGIN
 );
