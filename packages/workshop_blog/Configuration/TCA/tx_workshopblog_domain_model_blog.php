@@ -18,9 +18,6 @@ return [
         'title' => 'Blogentry',
         'searchFields' => 'hidden,date,title,teaser,bodytext'
     ],
-    'interface' => [
-        'showRecordFieldList' => 'hidden,date,title,teaser,bodytext'
-    ],
     'palettes' => [],
     'types' => [
         1 => [
@@ -59,7 +56,8 @@ return [
             'label' => 'Date',
             'config' => [
                 'type' => 'input',
-                'eval' => 'datetime'
+                'eval' => 'datetime',
+                'renderType' => 'inputDateTime'
             ]
         ],
 

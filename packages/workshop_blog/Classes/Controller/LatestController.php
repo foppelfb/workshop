@@ -3,6 +3,7 @@
 
 namespace WORKSHOP\WorkshopBlog\Controller;
 
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use WORKSHOP\WorkshopBlog\Domain\Repository\BlogRepository;
 use WORKSHOP\WorkshopBlog\Domain\Repository\CommentRepository;
@@ -22,37 +23,41 @@ class LatestController extends ActionController
      */
     protected $commentRepository;
     
-    public function injectBlogRepository(BlogRepository $blogRepository)
+    public function injectBlogRepository(BlogRepository $blogRepository): void
     {
         $this->blogRepository = $blogRepository;
     }
     
-    public function injectCommentRepository(CommentRepository $commentRepository)
+    public function injectCommentRepository(CommentRepository $commentRepository): void
     {
         $this->commentRepository = $commentRepository;
     }
     
-    public function indexAction()
+    public function indexAction(): ResponseInterface
     {
+        $this->view->assignMultiple([
+            'blogs'=>$this->blogRepository->findAll()->getQuery()->setLimit(3)->execute(),
+        ]);
+        return $this->htmlResponse();
         $pidOfPlugin = $this->configurationManager->getContentObject()->data['pid'];
         $uidOfPlugin = $this->configurationManager->getContentObject()->data['uid'];
         $cacheKey = 'blog-latest-'.$pidOfPlugin.'-'.$uidOfPlugin;
-    
+
         $cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Cache\CacheManager::class)
             ->getCache('workshop_blog_cache');
-    
+
         if (($data = $cache->get($cacheKey)) === false) {
-            
+
             $this->view->assignMultiple([
                 'blogs'=>$this->blogRepository->findAll()->getQuery()->setLimit(3)->execute(),
             ]);
-            
+
             $data = $this->view->render();
             $tags = ['blog_latest_view'];
             $tags[]='pageId_'.$pidOfPlugin; // we can diskus about this
             $cache->set($cacheKey,$data,$tags,0);
         }
-    
+
         return $data;
     }
 }

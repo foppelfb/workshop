@@ -18,9 +18,6 @@ return [
         'title' => 'Comment',
         'searchFields' => 'hidden,date,commentor,comment,blog'
     ],
-    'interface' => [
-        'showRecordFieldList' => 'hidden,date,commentor,comment,blog'
-    ],
     'palettes' => [],
     'types' => [
         1 => [
@@ -59,7 +56,8 @@ return [
             'label' => 'Date',
             'config' => [
                 'type' => 'input',
-                'eval' => 'datetime'
+                'eval' => 'datetime',
+                'renderType' => 'inputDateTime'
             ]
         ],
 
@@ -74,7 +72,6 @@ return [
             'label' => 'Blog',
             'config' => [
                 'type' => 'group',
-                'internal_type' => 'db',
                 'allowed' => 'tx_workshopblog_domain_model_blog',
                 'foreign_table'=> 'tx_workshopblog_domain_model_blog',
                 'minitems'=>1,
