@@ -1,53 +1,56 @@
 {
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true,
+    "platform": {
+      "php": "7.4.10"
+    },
+    "allow-plugins": {
+      "typo3/cms-composer-installers": true,
+      "typo3/class-alias-loader": true,
+      "cweagans/composer-patches": true,
+      "composer/package-versions-deprecated": true,
+      "rector/extension-installer": true
+    }
+  },
   "repositories": [
     {
       "type": "path",
       "url": "packages/*"
-    },
-    {
-      "type": "composer",
-      "url": "https://composer.typo3.org/"
     }
   ],
   "require": {
     "ext-json": "*",
     "ext-pdo": "*",
-    "php": ">=7.2.0",
-    "typo3-console/composer-auto-commands": "^0.1",
-    "helhum/typo3-secure-web": "^0.2.5",
-    "typo3/cms-core": "^9.5",
-    "typo3/cms-backend": "^9.5",
-    "typo3/cms-beuser": "^9.5",
-    "typo3/cms-extbase": "^9.5",
-    "typo3/cms-extensionmanager": "^9.5",
-    "typo3/cms-filelist": "^9.5",
-    "typo3/cms-fluid": "^9.5",
-    "typo3/cms-fluid-styled-content": "^9.5",
-    "typo3/cms-frontend": "^9.5",
-    "typo3/cms-info": "^9.5",
-    "typo3/cms-install": "^9.5",
-    "typo3/cms-lowlevel": "^9.5",
-    "typo3/cms-recordlist": "^9.5",
-    "typo3/cms-rte-ckeditor": "^9.5",
-    "typo3/cms-saltedpasswords": "^9.5",
-    "typo3/cms-setup": "^9.5",
-    "typo3/cms-t3editor": "^9.5",
-    "typo3/cms-tstemplate": "^9.5",
-    "typo3/cms-viewpage": "^9.5",
-    "fluidtypo3/vhs": "^5.0",
-    "helhum/dotenv-connector":"^2.1",
-    "typo3-console/composer-typo3-auto-install": "dev-master",
-    "bk2k/bootstrap-package": "^11.0",
+    "php": ">=7.4.0",
+    "typo3/cms-composer-installers": "*",
+    "typo3/cms-core": "^11.5",
+    "typo3/cms-backend": "^11.5",
+    "typo3/cms-beuser": "^11.5",
+    "typo3/cms-extbase": "^11.5",
+    "typo3/cms-extensionmanager": "^11.5",
+    "typo3/cms-filelist": "^11.5",
+    "typo3/cms-fluid": "^11.5",
+    "typo3/cms-fluid-styled-content": "^11.5",
+    "typo3/cms-frontend": "^11.5",
+    "typo3/cms-info": "^11.5",
+    "typo3/cms-install": "^11.5",
+    "typo3/cms-lowlevel": "^11.5",
+    "typo3/cms-recordlist": "^11.5",
+    "typo3/cms-rte-ckeditor": "^11.5",
+    "typo3/cms-setup": "^11.5",
+    "typo3/cms-t3editor": "^11.5",
+    "typo3/cms-tstemplate": "^11.5",
+    "typo3/cms-viewpage": "^11.5",
+    "helhum/typo3-console": "*",
+    "bk2k/bootstrap-package": "*",
     "workshop/blog": "@dev"
   },
   "extra": {
     "typo3/cms": {
       "cms-package-dir": "{$vendor-dir}/typo3/cms",
       "web-dir": "public",
-      "root-dir": "private"
-    },
-    "helhum/dotenv-connector": {
-      "env-file": ".env"
+      "root-dir": "public"
     },
     "helhum/typo3-console": {
       "install-extension-dummy": "0"
@@ -55,12 +58,13 @@
   },
   "scripts": {
     "post-install-cmd": [
-      "@addtrustedhostpattern",
-      "@importdata"
     ],
     "addtrustedhostpattern": "@php vendor/bin/typo3cms configuration:set SYS/trustedHostsPattern '.*'",
     "importdata": "@php vendor/bin/typo3cms database:import < init.sql",
     "killcache": "@php vendor/bin/typo3cms cache:flush",
     "t3update": "@php vendor/bin/typo3cms install:extensionsetupifpossible"
+  },
+  "require-dev": {
+    "rector/rector": "^0.12.21"
   }
 }
