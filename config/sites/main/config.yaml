@@ -1,5 +1,5 @@
-rootPageId: 1
 base: /
+errorHandling: {  }
 languages:
   -
     title: English
@@ -13,5 +13,5 @@ languages:
     hreflang: en-us
     direction: ltr
     flag: us
-errorHandling: {  }
+rootPageId: 1
 routes: {  }
