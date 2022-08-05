@@ -2,19 +2,19 @@
 
 
 call_user_func(function (): void {
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::registerPlugin(
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
         'WorkshopBlog',
         'List',
         'Workshop Blog List',
         'EXT:workshop_blog/Resources/Public/Icons/Extension.svg'
     );
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::registerPlugin(
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
         'WorkshopBlog',
         'Latest',
         'Workshop Blog Latest',
         'EXT:workshop_blog/Resources/Public/Icons/Extension.svg'
     );
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::registerPlugin(
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
         'WorkshopBlog',
         'Detail',
         'Workshop Blog Detail',
