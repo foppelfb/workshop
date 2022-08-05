@@ -1,22 +1,20 @@
 <?php
 
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 call_user_func(function (): void {
-    ExtensionUtility::registerPlugin(
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
         'WorkshopBlog',
         'List',
         'Workshop Blog List',
         'EXT:workshop_blog/Resources/Public/Icons/Extension.svg'
     );
-    ExtensionUtility::registerPlugin(
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
         'WorkshopBlog',
         'Latest',
         'Workshop Blog Latest',
         'EXT:workshop_blog/Resources/Public/Icons/Extension.svg'
     );
-    ExtensionUtility::registerPlugin(
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
         'WorkshopBlog',
         'Detail',
         'Workshop Blog Detail',
