@@ -26,7 +26,6 @@ if (!defined('TYPO3')) {
     'WorkshopBlog',
     'Detail',
     [
-
         \WORKSHOP\WorkshopBlog\Controller\DetailController::class=>'detail,savecomment'
     ],
     [],
