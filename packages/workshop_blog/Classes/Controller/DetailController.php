@@ -40,8 +40,8 @@ class DetailController extends ActionController
 
     public function detailAction(Blog $blog): ResponseInterface
     {
-        $pidOfPlugin = $this->configurationManager->getContentObject()->data['pid'];
-        $uidOfPlugin = $this->configurationManager->getContentObject()->data['uid'];
+        $pidOfPlugin = $this->request->getAttribute('currentContentObject')->data['pid'];
+        $uidOfPlugin = $this->request->getAttribute('currentContentObject')->data['uid'];
 
 	    $languageid = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id');
 
