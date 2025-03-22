@@ -4,19 +4,21 @@
 //above
 
 
-$pidOfPlugin = $this->configurationManager->getContentObject()->data['pid'];
-$uidOfPlugin = $this->configurationManager->getContentObject()->data['uid'];
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-$languageid = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance( \TYPO3\CMS\Core\Context\Context::class)->getPropertyFromAspect('language', 'id');
+$pidOfPlugin = $this->request->getAttribute('currentContentObject')->data['pid'];
+$uidOfPlugin = $this->request->getAttribute('currentContentObject')->data['uid'];
+
+
+$languageid = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id');
 
 $cacheKey = 'blog-detail-'.$blog->getUid().'-'.$pidOfPlugin.'-'.$uidOfPlugin.'-'.$languageid;
 
-$cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance( \TYPO3\CMS\Core\Cache\CacheManager::class)
+$cache = GeneralUtility::makeInstance( CacheManager::class)
                                                ->getCache('workshop_blog_cache');
 
 if (($data = $cache->get($cacheKey)) === false) {
-
-
 
 	// below
 
