@@ -6,7 +6,6 @@ return [
         'label' => 'commentor',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
         'delete' => 'deleted',
         'default_sortby' => 'date DESC',
         'adminOnly' => false,
@@ -39,8 +38,7 @@ return [
                 'default' => 1,
                 'items' => [
                     [
-                        0 => '',
-                        1 => '',
+                        'label' => '',
                         'invertStateDisplay' => true
                     ]
                 ],
@@ -55,9 +53,7 @@ return [
         'date' => [
             'label' => 'Date',
             'config' => [
-                'type' => 'input',
-                'eval' => 'datetime',
-                'renderType' => 'inputDateTime'
+                'type' => 'datetime'
             ]
         ],
 
