@@ -4,6 +4,7 @@
 namespace WORKSHOP\WorkshopBlog\Controller;
 
 use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -33,13 +34,13 @@ class LatestController extends ActionController
     public function indexAction(): ResponseInterface
     {
 
-        $pidOfPlugin = $this->configurationManager->getContentObject()->data['pid'];
-        $uidOfPlugin = $this->configurationManager->getContentObject()->data['uid'];
+        $pidOfPlugin = $this->request->getAttribute('currentContentObject')->data['pid'];
+        $uidOfPlugin = $this->request->getAttribute('currentContentObject')->data['uid'];
 	    $languageid = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id');
         $cacheKey = 'blog-latest-'.$pidOfPlugin.'-'.$uidOfPlugin.'-'.$languageid;
 
-        $cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Cache\CacheManager::class)
-            ->getCache('workshop_blog_cache');
+        $cache = GeneralUtility::makeInstance( CacheManager::class)
+                               ->getCache('workshop_blog_cache');
 
         if (($data = $cache->get($cacheKey)) === false) {
 
