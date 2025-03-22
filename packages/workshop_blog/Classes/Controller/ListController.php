@@ -17,24 +17,19 @@ class ListController extends ActionController
      *
      */
     protected $blogRepository;
-    
-    
+
+
     /**
      * @var CommentRepository
      *
      */
     protected $commentRepository;
-    
-    public function injectBlogRepository(BlogRepository $blogRepository): void
+    public function __construct( BlogRepository $blogRepository, CommentRepository $commentRepository)
     {
         $this->blogRepository = $blogRepository;
-    }
-    
-    public function injectCommentRepository(CommentRepository $commentRepository): void
-    {
         $this->commentRepository = $commentRepository;
     }
-    
+
     public function indexAction(): ResponseInterface
     {
 		$blogs = $this->blogRepository->findAll();

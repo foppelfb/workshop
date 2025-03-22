@@ -24,25 +24,20 @@ class DetailController extends ActionController
      *
      */
     protected $blogRepository;
-    
-    
+
+
     /**
      * @var CommentRepository
      *
      */
     protected $commentRepository;
-    
-    public function injectBlogRepository(BlogRepository $blogRepository): void
+    public function __construct( BlogRepository $blogRepository, CommentRepository $commentRepository)
     {
         $this->blogRepository = $blogRepository;
-    }
-    
-    public function injectCommentRepository(CommentRepository $commentRepository): void
-    {
         $this->commentRepository = $commentRepository;
     }
-    
-    
+
+
     public function detailAction(Blog $blog): ResponseInterface
     {
         $pidOfPlugin = $this->configurationManager->getContentObject()->data['pid'];
@@ -60,7 +55,7 @@ class DetailController extends ActionController
 
             $this->view->assignMultiple([
                 'blog' => $blog,
-                'comments' => $this->commentRepository->findByBlog($blog),
+                'comments' => $this->commentRepository->findBy(['blog' => $blog]),
                 'newcomment' => $newcomment,
             ]);
             // below
@@ -77,18 +72,18 @@ class DetailController extends ActionController
 
 	    return $this->htmlResponse($data);
     }
-    
-    
+
+
     /**
      * @param Comment $comment
      * @throws StopActionException
      * @throws UnsupportedRequestTypeException
      * @throws IllegalObjectTypeException
      */
-    public function savecommentAction(Comment $comment): void
+    public function savecommentAction(Comment $comment)
     {
         $comment->setDate(new DateTime());
         $this->commentRepository->add($comment);
-        $this->redirect('detail', null, null, ['blog'=>$comment->getBlog()]);
+        return $this->redirect('detail', null, null, ['blog'=>$comment->getBlog()]);
     }
 }

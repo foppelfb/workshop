@@ -3,7 +3,7 @@
     "optimize-autoloader": true,
     "sort-packages": true,
     "platform": {
-      "php": "7.4.10"
+      "php": "8.3.0"
     },
     "allow-plugins": {
       "typo3/cms-composer-installers": true,
@@ -22,26 +22,26 @@
   "require": {
     "ext-json": "*",
     "ext-pdo": "*",
-    "php": ">=7.4.0",
+    "php": "^8.1 || ^8.2 || ^8.3",
     "typo3/cms-composer-installers": "*",
-    "typo3/cms-core": "^11.5",
-    "typo3/cms-backend": "^11.5",
-    "typo3/cms-beuser": "^11.5",
-    "typo3/cms-extbase": "^11.5",
-    "typo3/cms-extensionmanager": "^11.5",
-    "typo3/cms-filelist": "^11.5",
-    "typo3/cms-fluid": "^11.5",
-    "typo3/cms-fluid-styled-content": "^11.5",
-    "typo3/cms-frontend": "^11.5",
-    "typo3/cms-info": "^11.5",
-    "typo3/cms-install": "^11.5",
-    "typo3/cms-lowlevel": "^11.5",
-    "typo3/cms-recordlist": "^11.5",
-    "typo3/cms-rte-ckeditor": "^11.5",
-    "typo3/cms-setup": "^11.5",
-    "typo3/cms-t3editor": "^11.5",
-    "typo3/cms-tstemplate": "^11.5",
-    "typo3/cms-viewpage": "^11.5",
+    "typo3/cms-core": "^13.4",
+    "typo3/cms-backend": "^13.4",
+    "typo3/cms-beuser": "^13.4",
+    "typo3/cms-extbase": "^13.4",
+    "typo3/cms-extensionmanager": "^13.4",
+    "typo3/cms-filelist": "^13.4",
+    "typo3/cms-fluid": "^13.4",
+    "typo3/cms-fluid-styled-content": "^13.4",
+    "typo3/cms-frontend": "^13.4",
+    "typo3/cms-info": "^13.4",
+    "typo3/cms-install": "^13.4",
+    "typo3/cms-lowlevel": "^13.4",
+    "typo3/cms-recordlist": "^13.4",
+    "typo3/cms-rte-ckeditor": "^13.4",
+    "typo3/cms-setup": "^13.4",
+    "typo3/cms-t3editor": "^13.4",
+    "typo3/cms-tstemplate": "^13.4",
+    "typo3/cms-viewpage": "^13.4",
     "helhum/typo3-console": "*",
     "bk2k/bootstrap-package": "*",
     "workshop/blog": "@dev"
@@ -65,6 +65,6 @@
     "t3update": "@php vendor/bin/typo3cms install:extensionsetupifpossible"
   },
   "require-dev": {
-    "rector/rector": "^0.12.21"
+    "ssch/typo3-rector": "*"
   }
 }
