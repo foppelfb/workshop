@@ -1,8 +1,11 @@
 <?php
 
 
-$pidOfPlugin = $this->configurationManager->getContentObject()->data['pid'];
-$uidOfPlugin = $this->configurationManager->getContentObject()->data['uid'];
+use TYPO3\CMS\Core\Cache\CacheManager;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
+$pidOfPlugin = $this->request->getAttribute('currentContentObject')->data['pid'];
+$uidOfPlugin = $this->request->getAttribute('currentContentObject')->data['uid'];
 
 $currentPage = 1;
 if ($this->request->hasArgument('@widget_0')) {
@@ -14,17 +17,17 @@ if ($this->request->hasArgument('@widget_0')) {
 
 $cacheKey = 'blog-list-'.$pidOfPlugin.'-'.$uidOfPlugin.'-'.$currentPage;
 
-$cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Cache\CacheManager::class)
+$cache = GeneralUtility::makeInstance( CacheManager::class)
     ->getCache('workshop_blog_cache');
 
 if (($data = $cache->get($cacheKey)) === false) {
-    
+
     // do the works
-    
+
     $data = $this->view->render();
     $tags = ['blog_list_view'];
     $tags[]='pageId_'.$pidOfPlugin; // we can diskus about this
     $cache->set($cacheKey,$data,$tags,0);
 }
 
-return $data;
+return $this->htmlResponse($data);
