@@ -35,7 +35,7 @@ class Datamap
         $this->clearMyCache($table,$id,$status);
     }
     
-    private function clearMyCache($table,$id,$status) {
+    private function clearMyCache($table,$id,$status): void {
         if ($table==='tx_workshopblog_domain_model_blog') {
             $this->cacheManager->flushByTags([
                 'blogId_' . $id,
