@@ -4,6 +4,7 @@
 namespace WORKSHOP\WorkshopBlog\Controller;
 
 use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
@@ -19,37 +20,32 @@ class ListController extends ActionController
      *
      */
     protected $blogRepository;
-    
-    
+
+
     /**
      * @var CommentRepository
      *
      */
     protected $commentRepository;
-    
-    public function injectBlogRepository(BlogRepository $blogRepository): void
+    public function __construct( BlogRepository $blogRepository, CommentRepository $commentRepository)
     {
         $this->blogRepository = $blogRepository;
-    }
-    
-    public function injectCommentRepository(CommentRepository $commentRepository): void
-    {
         $this->commentRepository = $commentRepository;
     }
-    
+
     public function indexAction(): ResponseInterface
     {
 
-        $pidOfPlugin = $this->configurationManager->getContentObject()->data['pid'];
-        $uidOfPlugin = $this->configurationManager->getContentObject()->data['uid'];
+        $pidOfPlugin = $this->request->getAttribute('currentContentObject')->data['pid'];
+        $uidOfPlugin = $this->request->getAttribute('currentContentObject')->data['uid'];
 	    $languageid = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id');
 
 	    $page = $this->request->hasArgument('page') ? $this->request->getArgument('page') : 1;
 
         $cacheKey = 'blog-list-'.$pidOfPlugin.'-'.$uidOfPlugin.'-'.$page.'-'.$languageid;
 
-        $cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Cache\CacheManager::class)
-            ->getCache('workshop_blog_cache');
+        $cache = GeneralUtility::makeInstance( CacheManager::class)
+                               ->getCache('workshop_blog_cache');
 
         if (($data = $cache->get($cacheKey)) === false) {
 
